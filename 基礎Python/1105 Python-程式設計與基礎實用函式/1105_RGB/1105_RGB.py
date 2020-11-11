@@ -13,13 +13,9 @@ def blink(t,gapN,colorStr):
 
 init(autoreset=True)
 while True:
-    T=0
     for i in range(0,5):
         blink(i,0,'red')
-        T+=1
     for i in range(5,6):
         blink(i,1,'yellow')
-        T+=1
     for i in range(6,10):
         blink(i,2,'green')
-        T+=1
