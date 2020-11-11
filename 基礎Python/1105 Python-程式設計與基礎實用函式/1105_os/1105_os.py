@@ -112,7 +112,7 @@ def EnterDir(): #進入資料夾
             i_+=1
     INi=PrintAndInput(menu)
     path_=menu[menuList[INi]]
-    os.system("start "+path_)
+    os.chdir(path_)
     pass
 
 def DelDir(): #刪除資料夾
@@ -133,9 +133,7 @@ def DelDir(): #刪除資料夾
     pass
 
 def BackDir(): #回上層資料夾
-    ocwd=os.getcwd()
-    ncwd=ocwd[0:ocwd.rfind('\\')]
-    os.chdir(ncwd)
+    os.chdir('../')
     pass
 
 
@@ -143,6 +141,7 @@ def BackDir(): #回上層資料夾
 os.system('cls')
 menu={}
 menuList=[]
+print("\n工作路徑："+os.getcwd())
 INi=MENU()
 while True:
     os.system('cls')
