@@ -1,0 +1,3 @@
+{
+	"shell_cmd": "start cmd /k python \"$file\""
+}
