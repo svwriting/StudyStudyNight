@@ -115,7 +115,7 @@ class MainFrame ( wx.Frame ):
 			txtfilepath_=wx.FileSelector(
 				"儲存檔案",
 				default_filename=name_,
-				wildcard=name_+"txt",
+				wildcard=".txt",
 				flags=wx.FD_SAVE
 			)
 			if txtfilepath_:
@@ -144,7 +144,7 @@ class MainFrame ( wx.Frame ):
 		exit()
 		pass
 
-	def textchange( self, event ): #結束程式
+	def textchange( self, event ): 
 		if self.isedited==False:
 			self.Title='*'+self.Title
 			self.isedited=True
