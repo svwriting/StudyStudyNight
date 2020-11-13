@@ -82,7 +82,7 @@ class MainFrame ( wx.Frame ):
 
 	# Virtual event handlers, overide them in your derived class
 	def newOpen( self, event ): #建立新檔
-		self.notepadtextarea.setValue("")
+		self.notepadtextarea.Value=""
 		self.currentpath=os.getcwd()
 		self.currentfile="未命名.txt"
 		self.SetTitle(self.currentfile)
@@ -100,9 +100,9 @@ class MainFrame ( wx.Frame ):
 			i_=txtfilepath_.rfind('\\')+1
 			self.currentpath=txtfilepath_[:i_]
 			self.currentfile=txtfilepath_[i_:]
-			self.SetTitle(self.currentfile)
 			with open(txtfilepath_,mode='r',encoding='utf-8') as txtfile_:
-				self.notepadtextarea.setValue(txtfile_.read())
+				self.notepadtextarea.Value=txtfile_.read()
+			self.SetTitle(self.currentfile)
 			self.isnew=False
 			self.isedited=False
 			pass
