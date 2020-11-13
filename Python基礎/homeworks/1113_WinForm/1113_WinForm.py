@@ -144,7 +144,7 @@ class MainFrame ( wx.Frame ):
 		exit()
 		pass
 
-	def textchange( self, event ): #結束程式
+	def textchange( self, event ): 
 		if self.isedited==False:
 			self.SetTitle('*'+self.GetTitle())
 			self.isedited=True
