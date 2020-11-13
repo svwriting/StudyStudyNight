@@ -85,7 +85,7 @@ class MainFrame ( wx.Frame ):
 		self.notepadtextarea.Value=""
 		self.currentpath=os.getcwd()
 		self.currentfile="未命名.txt"
-		self.Title=self.currentfile
+		self.SetTitle(self.currentfile)
 		self.isnew=True
 		self.isedited=False
 		pass
@@ -100,7 +100,7 @@ class MainFrame ( wx.Frame ):
 			i_=txtfilepath_.rfind('\\')+1
 			self.currentpath=txtfilepath_[:i_]
 			self.currentfile=txtfilepath_[i_:]
-			self.Title=self.currentfile
+			self.SetTitle(self.currentfile)
 			with open(txtfilepath_,mode='r',encoding='utf-8') as txtfile_:
 				self.notepadtextarea.Value=txtfile_.read()
 			self.isnew=False
@@ -125,7 +125,7 @@ class MainFrame ( wx.Frame ):
 				txtfilepath_=txtfilepath_.replace('*','')
 				with open(txtfilepath_,mode='w',encoding='utf-8') as txtfile_:
 					txtfile_.write(self.notepadtextarea.Value)
-				self.Title=self.currentfile
+				self.SetTitle(self.currentfile)
 				self.isnew=False
 				self.isedited=False
 		elif self.isedited:
@@ -133,7 +133,7 @@ class MainFrame ( wx.Frame ):
 			txtfilepath_=txtfilepath_.replace('*','')
 			with open(txtfilepath_,mode='w',encoding='utf-8') as txtfile_:
 				txtfile_.write(self.notepadtextarea.Value)
-			self.Title=self.currentfile
+			self.SetTitle(self.currentfile)
 			self.isnew=False
 			self.isedited=False			
 		else:
@@ -144,9 +144,9 @@ class MainFrame ( wx.Frame ):
 		exit()
 		pass
 
-	def textchange( self, event ): 
+	def textchange( self, event ): #結束程式
 		if self.isedited==False:
-			self.Title='*'+self.Title
+			self.SetTitle('*'+self.GetTitle())
 			self.isedited=True
 		pass
 
