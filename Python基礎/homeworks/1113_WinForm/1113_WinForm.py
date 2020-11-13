@@ -114,6 +114,7 @@ class MainFrame ( wx.Frame ):
 				name_+="(1)"
 			txtfilepath_=wx.FileSelector(
 				"儲存檔案",
+				default_filename=name_,
 				wildcard=name_+"txt",
 				flags=wx.FD_SAVE
 			)
