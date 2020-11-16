@@ -1,3 +1,6 @@
+
+#         全縮起來看會整齊點
+
 ############## import ################
 import os
 import pymysql
