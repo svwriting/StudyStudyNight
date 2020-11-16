@@ -1,3 +1,6 @@
+
+#         全縮起來看會整齊點
+
 ############## import ################
 import os
 import pymysql
@@ -12,7 +15,7 @@ connection_=None    # 拿來放資料庫連線
 cursor_=None        # 拿來放資料庫游標
 
 ##############  func  ################
-def generateInputDic(*keys):
+def generateInputDic(*keys):                       # Others 生成獲取輸入資料的dict
     ALL_={
         'id'        :"請選擇要操作的會員編號：",
         'name'      :"請輸入會員姓名：",
