@@ -1,5 +1,5 @@
 # TibaMe-AI
-課程管理用 by svwriting
+課程檔案管理用 by svwriting
 ---------------------------------------------
 
 VS Code / PyCharm     IDE
