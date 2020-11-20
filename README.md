@@ -34,3 +34,6 @@ print(string,end="")
 cmd:
 pip list
 netstat
+
+matplotlib:
+@matplotlib inline
