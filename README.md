@@ -10,6 +10,7 @@ NumPy                 資料處理(矩陣運算)lib
 Pandas                資料處理(數據模型)lib
 SciPy                 工程數學lib
 Matplotlib            繪圖lib
+Seaborn               資料視覺化
 opencv                機器視覺lib
 
 Graphviz              繪圖用(流程圖、關係圖)
