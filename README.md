@@ -24,6 +24,8 @@ wxFormBuilder         Python圖形化介面
 XAMPP                 Mysql管理工具
 pymysql               Mysql的Python函式庫
 
+Line Bot Designer     LineBot
+
 ==============================================
 
 Python:
