@@ -39,5 +39,5 @@ cmd:
 pip list
 netstat
 
-matplotlib:
+matplotlib in Jupyter:
 @matplotlib inline
