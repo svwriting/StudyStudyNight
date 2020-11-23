@@ -15,7 +15,7 @@ opencv                機器視覺lib
 
 Graphviz              繪圖用(流程圖、關係圖)
 
-ngork                 
+ngork                 temp_test_server
 
 =============================================
 
