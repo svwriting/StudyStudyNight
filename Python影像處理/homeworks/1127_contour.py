@@ -13,13 +13,12 @@ def method2(frame_):    # 算了懶得寫另外的方法了
     # frame_=cv2.inRange(frame_, (100,0,0), (255,100,100))  # 效果不好會跑掉
     return frame_
 
-overyet_,FIRSTframe_=videof_.read()
 while videof_.isOpened():
     overyet_,frame_=videof_.read()
     if not overyet_:
         break
 
-    cframe_=method2(frame_.copy())  # 判斷輪廓用的 cframe_
+    cframe_=method1(frame_.copy())  # 判斷輪廓用的 cframe_
 
     Pss_,Ls_=cv2.findContours(cframe_, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     if len(Pss_)>0:
