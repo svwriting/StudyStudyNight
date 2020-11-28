@@ -17,14 +17,10 @@ def method2(img_): # inRange
   return 255-img_
 
 def method3(img_): # cv2四則運算，但感覺效率待商榷
-  B_=img_[:,:,0]
-  G_=img_[:,:,1]
   R_=img_[:,:,2]
-  img_=cv2.add(B_,G_)
-  img_=cv2.add(img_,254)
+  img_=cv2.add(img_[:,:,0]+img_[:,:,1],254)
   img_=cv2.subtract(R_,img_)
-  img_=cv2.multiply(img_,255)
-  img_=cv2.subtract(255,img_)
+  img_=cv2.multiply(1-img_,255)
   return img_
 
 # 我不懂他要的是什麼 OTZ...
