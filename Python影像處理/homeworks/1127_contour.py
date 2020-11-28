@@ -4,12 +4,13 @@ import numpy as np
 videof_=cv2.VideoCapture("h3.mp4")
 
 
-def method1(frame_):    # 取S法二值化法
+def method1(frame_):    # 取S二值化法
     frame_=cv2.cvtColor(frame_,cv2.COLOR_BGR2HSV)[:,:,1]
     _,frame_=cv2.threshold(frame_,150,255,cv2.THRESH_BINARY)
     return frame_
 
 def method2(frame_):    # 算了懶得寫另外的方法了
+    # frame_=cv2.inRange(frame_, (100,0,0), (255,100,100))  # 效果不好會跑掉
     return frame_
 
 overyet_,FIRSTframe_=videof_.read()
@@ -18,7 +19,7 @@ while videof_.isOpened():
     if not overyet_:
         break
 
-    cframe_=method1(frame_.copy())  # 判斷輪廓用的 cframe_
+    cframe_=method2(frame_.copy())  # 判斷輪廓用的 cframe_
 
     Pss_,Ls_=cv2.findContours(cframe_, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     if len(Pss_)>0:
