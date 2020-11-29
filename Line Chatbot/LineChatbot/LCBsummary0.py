@@ -122,40 +122,11 @@ buttons_template_message = TemplateSendMessage(
         ],
   )
 )
-# URI動作的戰略價值：
-# https://developers.line.biz/en/docs/messaging-api/using-line-url-scheme/#available-line-url-schemes
-#  5. 範例-發送訊息快捷按鈕：以用戶身份發送文字消息
-textQuickReplyButton = QuickReplyButton(
-    action=MessageAction(
-        label="發送文字消息", 
-        text="text2"
-    )
-)
-#  5. 範例-時間選擇快捷按鈕：彈跳出選擇時間之視窗
-dateQuickReplyButton = QuickReplyButton(
-    action=DatetimePickerAction(
-        label="時間選擇",
-        data="data3",                       
-        mode="date"
-    )
-)
-#  5. 範例-開啟相機快捷按鈕：開啟相機
-cameraQuickReplyButton = QuickReplyButton(
-    action=CameraAction(label="拍照")
-)
-#  5. 範例-相片選擇快捷按鈕：切換至照片相簿選擇
-cameraRollQRB = QuickReplyButton(
-    action=CameraRollAction(label="選擇照片")
-)
-#  5. 範例-地理位置快捷按鈕：跳出地理位置
-locationQRB = QuickReplyButton(
-    action=LocationAction(label="地理位置")
-)
-#  5. 範例-(回傳)jsonMessage_訊息：預設為文字訊息"哈囉"
-def send_jsonMessage(jsonMessage_=None):
-    if jsonMessage_==None:
+#  5. 範例-以json產出文字訊息：預設為文字訊息"哈囉"
+def jsonTextSendMessage(json_=None):
+    if json_==None:
         # 範例-以文字定義 的 json格式 textSendMessage：說"哈囉"
-        jsonMessage_ = """
+        json_ = """
             {
             "type": "text",
             "text": "Hello"
@@ -163,29 +134,86 @@ def send_jsonMessage(jsonMessage_=None):
         """
     text_send_message= TextSendMessage.new_from_json_dict(
         json.loads(
-            jsonMessage_
+            json_
         )
     )
     return text_send_message
 #------------------- QuickReplyButtons --------------------
+# URI動作的戰略價值：
+# https://developers.line.biz/en/docs/messaging-api/using-line-url-scheme/#available-line-url-schemes
+#  5. 範例-發送訊息快捷按鈕：以用戶身份發送文字消息
+def QRB_Text(label_="發送文字消息",img_url=None,text_=""):
+    textQuickReplyButton = QuickReplyButton(
+        action=MessageAction(
+            label=label_, 
+            text=text_
+        ),
+        image_url=img_url
+    )
+    return textQuickReplyButton
+#  5. 範例-時間選擇快捷按鈕：彈跳出選擇時間之視窗
+def QRB_DatetimePicker(label_="時間選擇",img_url=None,mode_="date",data_="data_fromDatetimePicker"):
+    dateQuickReplyButton = QuickReplyButton(
+        action=DatetimePickerAction(
+            label=label_,                      
+            mode=mode_,
+            data=data_
+        ),
+        image_url=img_url
+    )
+    return dateQuickReplyButton
+#  5. 範例-開啟相機快捷按鈕：開啟相機
+def QRB_Camera(label_="拍照",img_url=None):
+    cameraQuickReplyButton = QuickReplyButton(
+        action=CameraAction(label=label_),
+        image_url=img_url
+    )
+    return cameraQuickReplyButton
+#  5. 範例-相片選擇快捷按鈕：切換至照片相簿選擇
+def QRB_PhotoChoose(label_="選擇照片",img_url=None):
+    cameraRollQRB = QuickReplyButton(
+        action=CameraRollAction(label=label_),
+        image_url=img_url
+    )
+    return cameraRollQRB
+#  5. 範例-地理位置快捷按鈕：跳出地理位置
+def QRB_Location(label_="地理位置",img_url=None):
+    locationQRB = QuickReplyButton(
+        action=LocationAction(label=label_),
+        image_url=img_url
+    )
+    return locationQRB
 #  5. 範例-Postback快捷按鈕：以Postback事件回應Server 
-postbackQRB = QuickReplyButton(
-    action=PostbackAction(label="我是PostbackEvent", data="Data1")
-)
+def QRB_Postback(label_="我是PostbackEvent",img_url=None,data_=None):
+    postbackQRB = QuickReplyButton(
+        action=PostbackAction(
+            label=label_, 
+            data=data_
+        ),
+        image_url=img_url
+    )
+    return postbackQRB
 #----------------------- QuickReply -----------------------
 #  6. 範例-快捷回應：將QuickReplyButton(s)加入QuickReply的items
-quickReplyList = QuickReply(
-    items = [
-        textQuickReplyButton, 
-        dateQuickReplyButton, 
-        cameraQuickReplyButton, 
-        cameraRollQRB, 
-        locationQRB,postbackQRB]
-)
+def produceQuickReplyItem(*QuickReplyButtons):
+    if QuickReplyButtons==[]:
+        QuickReplyButtons=[
+            QRB_Text(), 
+            QRB_DatetimePicker(), 
+            QRB_Camera(), 
+            QRB_PhotoChoose(), 
+            QRB_Location(),
+            QRB_Postback()
+        ]
+    quickReplyList = QuickReply(
+        items = QuickReplyButtons
+    )
+    return quickReplyList
 #  7. 範例-訊息with快捷回應：@reply，讓TextSendMessage伴隨QuickReply
+tempQuickReply=produceQuickReplyItem()
 quick_reply_text_send_message = TextSendMessage(
     text='發送問題給用戶，請用戶回答', 
-    quick_reply=quickReplyList)
+    quick_reply=tempQuickReply)
 #------------------- messages dict --------------------
 #  8. 當用戶輸入相應文字消息，選擇訊息
 template_message_dict = {
